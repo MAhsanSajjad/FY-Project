@@ -15,19 +15,37 @@ from django.db.models import  Q
 
 
 def index(request):
+    custom_message = ''
+
+    form = SignUpForm()
+    # email = request.POST.get('email')
+    # check_user = User.objects.filter(email=email).first()
+    # if check_user:
+    #     custom_message = 'This Email has already an account!'
+
     if request.method == "POST":
         form = SignUpForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
         
+        if form.is_valid():
             user = form.save(commit=True)
             return redirect('/user-login')
         else:
-            form = SignUpForm()
+            # Check if the email error occurred
+            if 'email' in form.errors:
+                custom_message = 'This Email has already an account!'
+            else:
+                custom_message = 'Password weak or did not match'
+            # Render the form with errors
+            form = SignUpForm(request.POST)
     else:
-
         form = SignUpForm()
-    return render(request, 'adminpanel/registration.html', {'form': form})
+    print('*******************', custom_message)
+
+    context ={
+        'custom_message':custom_message,
+        'form':form
+    }
+    return render(request, 'adminpanel/registration.html', context)
 
 
 
@@ -46,6 +64,9 @@ def user_login(request):
         'form':form,
     }
     return render(request, 'adminpanel/login.html', context)
+
+def upload_file(request):
+    return render(request,'adminpanel/upload_file.html')
 
 def dashboard(request):
     today = datetime.datetime.now()

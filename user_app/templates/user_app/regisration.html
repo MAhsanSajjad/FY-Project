@@ -30,7 +30,10 @@
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="Password">
+                    <span class="toggle-btn" onclick="togglePasswordVisibility()">👁️</span>
                   </div>
+                  </div>
+                 
 
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -38,4 +41,14 @@
         </div>
     </div>
 </div>
+<script>
+  function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("exampleInputPassword1");
+      if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+      } else {
+          passwordInput.type = "password";
+      }
+  }
+</script>
 {% endblock %}

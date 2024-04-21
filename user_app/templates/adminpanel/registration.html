@@ -1,4 +1,4 @@
-{% extends 'adminpanel/base.html' %}
+    {% extends 'adminpanel/base.html' %}
 
 {% block title %}
 Admin Signup
@@ -36,11 +36,10 @@ Admin Signup
                             <div class="p-2 mt-4">
                                 <h4 class="text-success">Sign Up</h4>
 
-                                {% if form.non_field_errors %}
+          
+                                {% if custom_message %}
                                 <ul class='form-errors'>
-                                    {% for error in form.non_field_errors %}
-                                    <li class="text-danger">{{ error }}</li>
-                                    {% endfor %}
+                                    <li class="text-danger">{{ custom_message }}</li>
                                 </ul>
                                 {% endif %}
 
@@ -72,6 +71,19 @@ Admin Signup
                                                 {{ form.password1 }}
                                             </div>
                                         </div>
+                                        <span class="toggle-btn" onclick="togglePasswordVisibility()">👁️</span>
+                                    </div>
+                                    <script>
+                                      function togglePasswordVisibility() {
+                                          var passwordInput = document.getElementById("exampleInputPassword1");
+                                          if (passwordInput.type === "password") {
+                                              passwordInput.type = "text";
+                                          } else {
+                                              passwordInput.type = "password";
+                                          }
+                                      }
+                                  </script>
+                  
                                         <div class="mb-3">
                                             <label class="form-label">Confirm Password</label>
                                             <div class="input-group auth-pass-inputgroup">

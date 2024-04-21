@@ -34,7 +34,7 @@ class LoginForm(forms.Form):
         return user
 
 
-class SignUpForm(forms.ModelForm):
+class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter first name', 'autocomplete': 'off'}))
     last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter last name', 'autocomplete': 'off'}))
     email = forms.EmailField(max_length=254, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter email', 'autocomplete': 'off'}))

@@ -9,6 +9,7 @@ urlpatterns = [
     path('user-login', user_login, name='user-login'),
     path('dashboard', dashboard, name='dashboard'),
     path('logout',logout, name='logout'),
+    path('upload_file',upload_file, name='upload_file'),
 
     path('admin_panel_view_users/', admin_panel_view_users, name="admin_panel_view_users"),
     path('admin_panel_search_user/', admin_panel_search_user, name='admin_panel_search_user'),
